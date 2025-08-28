@@ -1,15 +1,42 @@
 // src/components/Panel.jsx
+import * as React from 'react';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+
 function Panel({ children }) {
-  return <div style={{ border: '1px solid #ddd', borderRadius: 8 }}>{children}</div>;
+  return (
+    <Paper variant="outlined" sx={{ borderRadius: 2, overflow: 'hidden' }}>
+      {children}
+    </Paper>
+  );
 }
+
 function PanelHeader({ children }) {
-  return <div style={{ padding: 12, borderBottom: '1px solid #eee', fontWeight: 700 }}>{children}</div>;
+  return (
+    <Box
+      sx={{
+        px: 1.5,
+        py: 1.5,
+        borderBottom: 1,
+        borderColor: 'divider',
+        fontWeight: 700,
+      }}
+    >
+      {children}
+    </Box>
+  );
 }
+
 function PanelBody({ children }) {
-  return <div style={{ padding: 12 }}>{children}</div>;
+  return <Box sx={{ px: 1.5, py: 1.5 }}>{children}</Box>;
 }
+
 function PanelFooter({ children }) {
-  return <div style={{ padding: 12, borderTop: '1px solid #eee' }}>{children}</div>;
+  return (
+    <Box sx={{ px: 1.5, py: 1.5, borderTop: 1, borderColor: 'divider' }}>
+      {children}
+    </Box>
+  );
 }
 
 Panel.Header = PanelHeader;

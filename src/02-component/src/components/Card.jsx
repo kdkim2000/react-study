@@ -1,10 +1,27 @@
 // src/components/Card.jsx
+import * as React from 'react';
+import MuiCard from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Divider from '@mui/material/Divider';
+
 export default function Card({ title, children, footer }) {
   return (
-    <section style={{ border: '1px solid #eee', borderRadius: 12, padding: 16, marginTop: 16 }}>
-      {title && <h2 style={{ marginTop: 0 }}>{title}</h2>}
-      <div>{children}</div>
-      {footer && <div style={{ marginTop: 12, borderTop: '1px solid #f0f0f0', paddingTop: 8 }}>{footer}</div>}
-    </section>
+    <MuiCard variant="outlined" sx={{ mt: 2, borderRadius: 2 }}>
+      {title && (
+        <CardHeader
+          title={title}
+          sx={{ '& .MuiCardHeader-title': { fontWeight: 700 } }}
+        />
+      )}
+      <CardContent>{children}</CardContent>
+      {footer && (
+        <>
+          <Divider />
+          <CardActions sx={{ px: 2, py: 1.5 }}>{footer}</CardActions>
+        </>
+      )}
+    </MuiCard>
   );
 }
