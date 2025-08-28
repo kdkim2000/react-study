@@ -1,5 +1,11 @@
-// src/components/TodoFilters.tsx
-import type { Filter } from './TodoApp'; // 혹은 별도 types import
+import * as React from 'react';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Stack from '@mui/material/Stack';
+import Chip from '@mui/material/Chip';
+import Button from '@mui/material/Button';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
+import type { Filter } from './TodoApp';
 
 type Props = {
   current: Filter;
@@ -11,30 +17,41 @@ type Props = {
 const filters: Filter[] = ['all', 'active', 'completed'];
 
 export default function TodoFilters({
-  current, onChange, onClearCompleted, completedCount
+  current,
+  onChange,
+  onClearCompleted,
+  completedCount,
 }: Props) {
+  const handleChange = (_: React.MouseEvent<HTMLElement>, value: Filter | null) => {
+    if (value) onChange(value);
+  };
+
   return (
-    <div style={{ display: 'flex', gap: 8, alignItems: 'center', margin: '12px 0' }}>
-      <div style={{ display: 'flex', gap: 4 }}>
-        {filters.map(f => (
-          <button
-            key={f}
-            onClick={() => onChange(f)}
-            aria-pressed={current === f}
-            style={{
-              padding: '4px 8px',
-              border: current === f ? '2px solid #333' : '1px solid #ccc',
-              borderRadius: 8
-            }}
-          >
+    <Stack direction="row" spacing={1} alignItems="center">
+      <ToggleButtonGroup
+        value={current}
+        exclusive
+        onChange={handleChange}
+        size="small"
+        aria-label="todo filters"
+      >
+        {filters.map((f) => (
+          <ToggleButton key={f} value={f} aria-label={f}>
             {f}
-          </button>
+          </ToggleButton>
         ))}
-      </div>
-      <span style={{ marginLeft: 'auto', fontSize: 12, color: '#666' }}>
-        완료: {completedCount}
-      </span>
-      <button onClick={onClearCompleted}>완료 삭제</button>
-    </div>
+      </ToggleButtonGroup>
+
+      <Chip label={`완료: ${completedCount}`} size="small" variant="outlined" sx={{ ml: 'auto' }} />
+
+      <Button
+        onClick={onClearCompleted}
+        size="small"
+        startIcon={<ClearAllIcon />}
+        color="secondary"
+      >
+        완료 삭제
+      </Button>
+    </Stack>
   );
 }

@@ -1,4 +1,11 @@
-// src/components/TodoItem.tsx
+import * as React from 'react';
+import Checkbox from '@mui/material/Checkbox';
+import IconButton from '@mui/material/IconButton';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+
 import type { Todo, TodoActions } from './TodoApp';
 
 type Props = {
@@ -8,26 +15,29 @@ type Props = {
 
 export default function TodoItem({ todo, actions }: Props) {
   return (
-    <li
-      style={{
-        border: '1px solid #eee',
-        borderRadius: 8,
-        padding: 8,
-        display: 'flex',
-        alignItems: 'center',
-        gap: 8
-      }}
+    <ListItem
+      disableGutters
+      secondaryAction={
+        <IconButton edge="end" aria-label="삭제" onClick={() => actions.remove(todo.id)}>
+          <DeleteOutlineIcon />
+        </IconButton>
+      }
+      sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 2, px: 1, py: 0.5 }}
     >
-      <input
-        type="checkbox"
-        checked={todo.done}
-        onChange={() => actions.toggle(todo.id)}
-        aria-label={`${todo.text} 완료 토글`}
+      <ListItemIcon sx={{ minWidth: 40 }}>
+        <Checkbox
+          edge="start"
+          checked={todo.done}
+          onChange={() => actions.toggle(todo.id)}
+          inputProps={{ 'aria-label': `${todo.text} 완료 토글` }}
+        />
+      </ListItemIcon>
+      <ListItemText
+        primary={todo.text}
+        primaryTypographyProps={{
+          sx: { textDecoration: todo.done ? 'line-through' : 'none' },
+        }}
       />
-      <span style={{ flex: 1, textDecoration: todo.done ? 'line-through' : 'none' }}>
-        {todo.text}
-      </span>
-      <button onClick={() => actions.remove(todo.id)} aria-label="삭제">🗑️</button>
-    </li>
+    </ListItem>
   );
 }

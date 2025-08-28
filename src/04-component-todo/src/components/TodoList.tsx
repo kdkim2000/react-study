@@ -1,18 +1,22 @@
-// src/components/TodoList.tsx
-import type { Todo, TodoActions } from './TodoApp';
+import * as React from 'react';
+import List from '@mui/material/List';
+import Stack from '@mui/material/Stack';
 import TodoItem from './TodoItem';
+import type { Todo, TodoActions } from './TodoApp';
 
 type Props = {
   todos: Todo[];
-  actions: Pick<TodoActions, 'toggle' | 'remove'>; // 필요한 액션만 내려도 OK
+  actions: Pick<TodoActions, 'toggle' | 'remove'>;
 };
 
 export default function TodoList({ todos, actions }: Props) {
   return (
-    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
-      {todos.map(todo => (
-        <TodoItem key={todo.id} todo={todo} actions={actions} />
-      ))}
-    </ul>
+    <List disablePadding>
+      <Stack spacing={1}>
+        {todos.map((todo) => (
+          <TodoItem key={todo.id} todo={todo} actions={actions} />
+        ))}
+      </Stack>
+    </List>
   );
 }
