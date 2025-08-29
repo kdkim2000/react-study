@@ -1,0 +1,50 @@
+// src/pages/BlogPostPage.tsx
+import { Link as RouterLink, LoaderFunctionArgs, useLoaderData, useParams } from 'react-router-dom';
+import type { Post } from '../lib/blog';
+import { fetchPostBySlug } from '../lib/blog';
+
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import Link from '@mui/material/Link';
+import Chip from '@mui/material/Chip';
+
+export async function blogPostLoader({ params }: LoaderFunctionArgs) {
+  const slug = params.slug!;
+  const post = await fetchPostBySlug(slug);
+  if (!post) {
+    throw new Response('Post not found', { status: 404, statusText: 'Not Found' });
+  }
+  return post;
+}
+
+export default function BlogPostPage() {
+  const { slug } = useParams();
+  const post = useLoaderData() as Post;
+
+  return (
+    <Stack spacing={1.5}>
+      <Link component={RouterLink} to="/blog" underline="hover">
+        ← 목록으로
+      </Link>
+
+      <Typography variant="h4" fontWeight={800} sx={{ mb: 0 }}>
+        {post.title}
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        {new Date(post.date).toLocaleString()} •{' '}
+        {post.tags.map((t) => (
+          <Chip key={t} label={t} size="small" sx={{ mr: 0.5 }} />
+        ))}
+      </Typography>
+
+      <Typography sx={{ mt: 1 }}>{post.body}</Typography>
+
+      <Divider sx={{ my: 1 }} />
+
+      <Typography color="text.secondary" variant="caption">
+        slug: <code>{slug}</code>
+      </Typography>
+    </Stack>
+  );
+}
