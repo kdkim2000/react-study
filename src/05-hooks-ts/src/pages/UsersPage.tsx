@@ -1,5 +1,4 @@
 // src/pages/UsersPage.tsx
-import * as React from 'react';
 import { useEffect, useMemo, useState } from 'react';
 import { fetchUsers, type User } from '../lib/api';
 import UsersList from '../components/UsersList';
