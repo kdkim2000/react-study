@@ -1,0 +1,35 @@
+/* src/index.css */
+:root {
+  --bg: #ffffff;
+  --fg: #111827;
+  --muted: #6b7280;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b0f14;
+  --fg: #e5e7eb;
+  --muted: #9ca3af;
+  --card: #0f1720;
+  --border: #1f2937;
+  color-scheme: dark;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+  line-height: 1.5;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+.small { color: var(--muted); font-size: 12px; }
