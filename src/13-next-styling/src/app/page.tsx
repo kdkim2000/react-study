@@ -1,6 +1,4 @@
 // src/app/page.tsx
-import DesignServicesIcon from '@mui/icons-material/DesignServices'; 
-
 import React from 'react';
 import {
   Container,
@@ -14,6 +12,7 @@ import {
   Chip,
   Paper,
 } from '@mui/material';
+
 import {
   Palette,
   Devices,
@@ -22,9 +21,9 @@ import {
   Code,
   Design,
 } from '@mui/icons-material';
-import MainLayout from './components/layout/MainLayout';
-import ResponsiveGrid from './components/common/ResponsiveGrid';
-import ThemeToggle from './components/common/ThemeToggle';
+import MainLayout from '@/components/layout/MainLayout';
+import ResponsiveGrid from '@/components/common/ResponsiveGrid';
+import ThemeToggle from '@/components/common/ThemeToggle';
 import Link from 'next/link';
 
 const features = [

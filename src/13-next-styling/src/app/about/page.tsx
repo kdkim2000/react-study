@@ -12,7 +12,7 @@ import {
   LinearProgress,
   Paper,
 } from '@mui/material';
-import { Code, Design, Speed } from '@mui/icons-material';
+import { Code, Brush, Speed } from '@mui/icons-material';
 import MainLayout from '@/components/layout/MainLayout';
 
 const skills = [
@@ -85,7 +85,7 @@ export default function AboutPage() {
           </Grid>
           <Grid item xs={12} md={4}>
             <Card sx={{ height: '100%', textAlign: 'center', p: 3 }}>
-              <Design sx={{ fontSize: 48, color: 'secondary.main', mb: 2 }} />
+              <Brush sx={{ fontSize: 48, color: 'secondary.main', mb: 2 }} />
               <Typography variant="h5" component="h3" gutterBottom>
                 사용자 중심
               </Typography>
