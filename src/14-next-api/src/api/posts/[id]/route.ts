@@ -1,3 +1,4 @@
+// src/app/api/posts/[id]/route.ts
 import { NextResponse } from 'next/server';
 import { deletePost, getPost, updatePost } from '@/lib/store';
 
