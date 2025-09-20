@@ -12,7 +12,9 @@ export default function Card({ title, children, footer }) {
       {title && (
         <CardHeader
           title={title}
-          sx={{ '& .MuiCardHeader-title': { fontWeight: 700 } }}
+          sx={{ backgroundColor: 'primary.main', 
+                color: 'primary.contrastText',
+                '& .MuiCardHeader-title': { fontWeight: 700 } }}
         />
       )}
       <CardContent>{children}</CardContent>
