@@ -30,22 +30,22 @@ export default function App() {
 
       <Divider sx={{ my: 3 }} />
 
-      <Card title="공지">
-        <Typography>
-          리액트 스터디는 매주 화/목 19:00에 진행합니다.
-        </Typography>
-      </Card>
+      <Card 
+        title="공지"  
+        children="리액트 스터디는 매주 화/목 19:00에 진행합니까?" 
+        footer=""
+      ></Card>
 
       <Card
         title="업무 가이드"
+        children = {
+          <ul style={{ margin: 0, paddingLeft: '1.25rem' }}>
+            <li>PR은 최소 1명 리뷰 후 머지</li>
+            <li>Lint 에러 0 유지</li>
+            <li>커밋 메시지 규칙: feat/fix/chore 등 prefix</li>
+          </ul>}
         footer={<Typography variant="caption">마지막 업데이트: 2025-08-27</Typography>}
-      >
-        <ul style={{ margin: 0, paddingLeft: '1.25rem' }}>
-          <li>PR은 최소 1명 리뷰 후 머지</li>
-          <li>Lint 에러 0 유지</li>
-          <li>커밋 메시지 규칙: feat/fix/chore 등 prefix</li>
-        </ul>
-      </Card>
+      ></Card>
 
       <Divider sx={{ my: 3 }} />
 

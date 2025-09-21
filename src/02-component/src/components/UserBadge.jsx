@@ -14,7 +14,7 @@ export default function UserBadge({ name, role = 'Member' }) {
       sx={{ p: 1.5, borderRadius: 2, display: 'inline-block' }}
     >
       <Stack direction="row" spacing={1} alignItems="center">
-        <Avatar>{initial}</Avatar>
+        <Avatar sx={{ backgroundColor: 'primary.main' }}>{initial}</Avatar>
         <Typography fontWeight={700}>{name}</Typography>
         <Typography variant="body2" color="text.secondary">
           ({role})
