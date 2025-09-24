@@ -81,23 +81,26 @@ export default function BlogIndexPage() {
 
       <Grid container spacing={2}>
         {filtered.map((p) => (
-          <Grid item xs={12} sm={6} key={p.id}>
+          <Grid size={{ xs: 12, sm: 6 }} key={p.id}>
             <Card 
               variant="outlined" 
               sx={{ 
-                height: '100%', 
+                height: 320, // 고정 높이 설정
+                minHeight: 320,
+                maxHeight: 320,
                 display: 'flex', 
-                flexDirection: 'column' 
+                flexDirection: 'column',
+                width: '100%' // 폭 고정
               }}
             >
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Stack spacing={1}>
+              <CardContent sx={{ flexGrow: 1, overflow: 'hidden', p: 2 }}>
+                <Stack spacing={1.5} sx={{ height: '100%' }}>
                   <Stack 
                     direction="row" 
                     spacing={1} 
-                    alignItems="baseline"
+                    alignItems="flex-start"
                     justifyContent="space-between"
-                    flexWrap="wrap"
+                    sx={{ minHeight: 56 }} // 제목 영역 최소 높이 고정
                   >
                     <Typography 
                       variant="h6" 
@@ -105,8 +108,14 @@ export default function BlogIndexPage() {
                       sx={{ 
                         fontWeight: 700,
                         flex: 1,
-                        minWidth: 0, // 텍스트 줄바꿈 허용
-                        wordBreak: 'break-word'
+                        minWidth: 0,
+                        wordBreak: 'break-word',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2, // 제목 최대 2줄로 제한
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        lineHeight: 1.3
                       }}
                     >
                       {p.title}
@@ -114,7 +123,11 @@ export default function BlogIndexPage() {
                     <Typography 
                       variant="caption" 
                       color="text.secondary"
-                      sx={{ flexShrink: 0 }}
+                      sx={{ 
+                        flexShrink: 0,
+                        ml: 1,
+                        whiteSpace: 'nowrap' // 날짜는 한 줄로 고정
+                      }}
                     >
                       {new Date(p.date).toLocaleDateString('ko-KR')}
                     </Typography>
@@ -124,41 +137,63 @@ export default function BlogIndexPage() {
                     color="text.secondary"
                     sx={{
                       display: '-webkit-box',
-                      WebkitLineClamp: 3,
+                      WebkitLineClamp: 3, // 요약 3줄로 고정
                       WebkitBoxOrient: 'vertical',
                       overflow: 'hidden',
-                      textOverflow: 'ellipsis'
+                      textOverflow: 'ellipsis',
+                      height: 66, // 요약 영역 고정 높이
+                      lineHeight: 1.5
                     }}
                   >
                     {p.excerpt}
                   </Typography>
-                  {p.tags.length > 0 && (
-                    <Stack 
-                      direction="row" 
-                      spacing={0.5} 
-                      flexWrap="wrap" 
-                      useFlexGap
-                      sx={{ mt: 1 }}
-                    >
-                      {p.tags.map((t) => (
-                        <Chip 
-                          key={t} 
-                          label={t} 
-                          size="small" 
-                          variant="outlined"
-                          sx={{ mb: 0.5 }}
-                        />
-                      ))}
-                    </Stack>
-                  )}
+                  <Stack 
+                    direction="row" 
+                    spacing={0.5} 
+                    flexWrap="wrap" 
+                    useFlexGap
+                    sx={{ 
+                      mt: 1,
+                      minHeight: 40, // 태그 영역 최소 높이 고정
+                      maxHeight: 72, // 태그 영역 최대 높이 제한
+                      overflow: 'hidden'
+                    }}
+                  >
+                    {p.tags.slice(0, 4).map((t) => ( // 최대 4개 태그만 표시
+                      <Chip 
+                        key={t} 
+                        label={t} 
+                        size="small" 
+                        variant="outlined"
+                        sx={{ 
+                          mb: 0.5,
+                          maxWidth: 120, // 태그 최대 폭 제한
+                          '& .MuiChip-label': {
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis'
+                          }
+                        }}
+                      />
+                    ))}
+                    {p.tags.length > 4 && (
+                      <Chip 
+                        label={`+${p.tags.length - 4}`}
+                        size="small" 
+                        variant="outlined"
+                        color="primary"
+                        sx={{ mb: 0.5 }}
+                      />
+                    )}
+                  </Stack>
                 </Stack>
               </CardContent>
-              <CardActions sx={{ px: 2, pb: 2 }}>
+              <CardActions sx={{ px: 2, pb: 2, minHeight: 52 }}>
                 <Button 
                   component={RouterLink} 
                   to={`/blog/${p.slug}`} 
                   size="small"
                   variant="outlined"
+                  fullWidth // 버튼을 전체 폭으로
                 >
                   자세히 보기 →
                 </Button>

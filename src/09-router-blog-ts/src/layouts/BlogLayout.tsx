@@ -2,12 +2,26 @@
 import { Outlet } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 
 export default function BlogLayout() {
   return (
-    <Stack spacing={2}>
-      <Typography variant="h5" fontWeight={800}>블로그</Typography>
-      <Outlet />
-    </Stack>
+    <Box sx={{ width: '100%', maxWidth: '100%' }}>
+      <Stack spacing={2} sx={{ maxWidth: '100%' }}>
+        <Typography 
+          variant="h5" 
+          fontWeight={800}
+          sx={{ 
+            wordBreak: 'break-word',
+            overflowWrap: 'break-word'
+          }}
+        >
+          블로그
+        </Typography>
+        <Box sx={{ width: '100%', maxWidth: '100%', overflow: 'hidden' }}>
+          <Outlet />
+        </Box>
+      </Stack>
+    </Box>
   );
 }
