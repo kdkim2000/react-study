@@ -30,7 +30,7 @@ export default function SearchApp() {
   // 3) 고정 데이터/카테고리 목록 메모(의존 없음)
   const items = RAW; // 실제 앱에선 서버/캐시에서 fetch
   const categories = useMemo<Category[]>(
-    () => ['all', 'Framework', 'Library', 'Tool'],
+    () => ['all', 'Framework', 'Library', 'Tool', 'Database' , 'Language' ,'Cloud' , 'Testing' , 'DevOps'],
     []
   );
 
@@ -50,7 +50,11 @@ export default function SearchApp() {
   const toggleFavorite = useCallback((id: string) => {
     setFavorites((prev) => {
       const next = new Set(prev);
-      next.has(id) ? next.delete(id) : next.add(id);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
       return next;
     });
   }, []);
