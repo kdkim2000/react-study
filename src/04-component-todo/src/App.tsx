@@ -35,7 +35,7 @@ export default function App() {
       <CssBaseline />
       <Container maxWidth="sm" sx={{ py: 4 }}>
         <Box sx={{ mb: 2 }}>
-          <Typography variant="h4" fontWeight={800}>
+          <Typography variant="h4" fontWeight={1000}>
             ToDo List (MUI)
           </Typography>
           <Typography variant="body2" color="text.secondary">

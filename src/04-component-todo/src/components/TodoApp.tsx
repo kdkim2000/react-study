@@ -66,7 +66,7 @@ export default function TodoApp() {
       <CardHeader
         title="ToDo List"
         subheader="할 일을 추가하고 필터링/완료/삭제해 보세요."
-        sx={{ '& .MuiCardHeader-title': { fontWeight: 700 } }}
+        sx={{ '& .MuiCardHeader-title': { fontWeight: 800 } }}
       />
       <Divider />
       <CardContent>
