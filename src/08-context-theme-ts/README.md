@@ -760,7 +760,6 @@ Context 상태를 시각적으로 디버깅할 수 있는 도구를 만드세요
 
 ### 8.2 성능 최적화 체크리스트
 
-```markdown
 Performance Checklist:
 
 상태 분리:
@@ -776,7 +775,6 @@ Performance Checklist:
 - [ ] React.memo로 불필요한 리렌더 방지
 - [ ] Context 변경 시 영향받는 컴포넌트 최소화
 - [ ] 큰 객체보다는 primitive 값 위주로 상태 구성
-```
 
 ### 8.3 팀 개발에서의 적용 전략
 
