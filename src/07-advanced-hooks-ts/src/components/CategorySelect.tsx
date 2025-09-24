@@ -1,6 +1,6 @@
 type Props = {
-  categories: Array<'all' | 'Framework' | 'Library' | 'Tool'>;
-  value: 'all' | 'Framework' | 'Library' | 'Tool';
+  categories: Array<'all' | 'Framework' | 'Library' | 'Tool' | 'Database' | 'Language' | 'Cloud' | 'Testing' | 'DevOps'>;
+  value: 'all' | 'Framework' | 'Library' | 'Tool' | 'Database' | 'Language' | 'Cloud' | 'Testing' | 'DevOps';
   onChange: (next: Props['value']) => void;
 };
 

@@ -4,7 +4,7 @@ import SearchInput from './SearchInput';
 import CategorySelect from './CategorySelect';
 import ResultsList from './ResultsList';
 
-type Category = 'all' | 'Framework' | 'Library' | 'Tool';
+type Category = 'all' | 'Framework' | 'Library' | 'Tool' | 'Database' | 'Language' | 'Cloud' | 'Testing' | 'DevOps' ;
 
 export default function SearchApp() {
   // 1) 검색/카테고리/즐겨찾기 상태
